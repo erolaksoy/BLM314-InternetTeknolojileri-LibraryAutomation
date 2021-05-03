@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace LibraryAutomation.API.DTOs
 {
-    public class AuthorDto
+    public class AuthorListDto
     {
         public string Name { get; set; }
         public string LastName { get; set; }
+        public virtual List<Book> Books { get; set; }
     }
 }

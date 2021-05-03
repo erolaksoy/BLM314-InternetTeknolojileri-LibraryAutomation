@@ -15,6 +15,7 @@ namespace LibraryAutomation.API.Mapping.AutoMapperMapProfile
             CreateMap<User, UserDto>().ReverseMap();
             CreateMap<User, UserUpdateDto>().ReverseMap();
             CreateMap<Author, AuthorDto>().ReverseMap();
+            CreateMap<Author, AuthorListDto>();
             CreateMap<Author, AuthorUpdateDto>().ReverseMap();
             CreateMap<Book, BookDto>().ReverseMap();
             CreateMap<Book, BookUpdateDto>().ReverseMap();
