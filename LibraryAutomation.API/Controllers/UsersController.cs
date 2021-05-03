@@ -18,11 +18,9 @@ namespace LibraryAutomation.API.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IGenericRepository<User> _userRepo;
-        private readonly AppDbContext _context;
         private readonly IMapper _mapper;
-        public UsersController(IGenericRepository<User> userRepo, IMapper mapper, AppDbContext context)
+        public UsersController(IGenericRepository<User> userRepo, IMapper mapper)
         {
-            _context = context;
             _mapper = mapper;
             _userRepo = userRepo;
         }
@@ -32,7 +30,7 @@ namespace LibraryAutomation.API.Controllers
         {
             var userList = await _userRepo.GetAllAsync();
             
-            return Ok(_context.Users.Include(x=>x.BorrowBooks).ToList());
+            return Ok(_userRepo.GetContext().Include(x=>x.BorrowBooks).ToList());
         }
 
         [HttpPost]

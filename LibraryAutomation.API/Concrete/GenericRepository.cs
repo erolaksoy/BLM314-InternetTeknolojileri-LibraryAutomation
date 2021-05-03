@@ -60,9 +60,9 @@ namespace LibraryAutomation.API.Concrete
             return _dbSet.Where(predicate);
         }
 
-        public IQueryable<TEntity> CustomFilter(Expression<Func<TEntity, bool>> predicate)
+        public IQueryable<TEntity> GetContext()
         {
-            return _dbSet.Where(predicate);
+            return _dbSet;
         }
     }
 }
