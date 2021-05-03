@@ -33,7 +33,13 @@ namespace LibraryAutomation.API.Concrete
 
         public async Task<TEntity> GetByIdAsync(int id)
         {
-            return await _dbSet.FindAsync(id);
+            var entity = await _dbSet.FindAsync(id);
+            if (entity!= null)
+            {
+                _context.Entry(entity).State= EntityState.Detached;
+            }
+
+            return entity;
         }
 
         public void Remove(TEntity entity)
