@@ -15,5 +15,6 @@ namespace LibraryAutomation.API.Interfaces
         void Remove(TEntity entity);
         TEntity Update(TEntity entity);
         IQueryable<TEntity> Where(Expression<Func<TEntity, bool>> predicate);
+        IQueryable<TEntity> CustomFilter(Expression<Func<TEntity, bool>> predicate);
     }
 }

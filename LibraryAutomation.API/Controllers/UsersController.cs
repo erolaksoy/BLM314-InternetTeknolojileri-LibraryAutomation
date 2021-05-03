@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using LibraryAutomation.API.Context;
 using LibraryAutomation.API.DTOs;
 using LibraryAutomation.API.Interfaces;
 using LibraryAutomation.API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +18,11 @@ namespace LibraryAutomation.API.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IGenericRepository<User> _userRepo;
+        private readonly AppDbContext _context;
         private readonly IMapper _mapper;
-        public UsersController(IGenericRepository<User> userRepo, IMapper mapper)
+        public UsersController(IGenericRepository<User> userRepo, IMapper mapper, AppDbContext context)
         {
+            _context = context;
             _mapper = mapper;
             _userRepo = userRepo;
         }
@@ -27,7 +31,8 @@ namespace LibraryAutomation.API.Controllers
         public async Task<IActionResult> GetUsers()
         {
             var userList = await _userRepo.GetAllAsync();
-            return Ok(userList);
+            
+            return Ok(_context.Users.Include(x=>x.BorrowBooks).ToList());
         }
 
         [HttpPost]

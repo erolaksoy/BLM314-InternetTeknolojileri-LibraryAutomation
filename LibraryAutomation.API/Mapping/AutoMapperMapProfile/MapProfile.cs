@@ -20,6 +20,7 @@ namespace LibraryAutomation.API.Mapping.AutoMapperMapProfile
             CreateMap<Book, BookDto>().ReverseMap();
             CreateMap<Book, BookUpdateDto>().ReverseMap();
             CreateMap<BorrowBook, BorrowBookDto>().ReverseMap();
+            CreateMap<BorrowBook, BorrowBookAddDto>().ReverseMap();
             CreateMap<BorrowBook, BorrowBookUpdateDto>().ReverseMap();
         }
     }
