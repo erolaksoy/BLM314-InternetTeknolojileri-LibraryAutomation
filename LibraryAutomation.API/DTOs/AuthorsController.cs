@@ -3,6 +3,7 @@ using LibraryAutomation.API.Interfaces;
 using LibraryAutomation.API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,13 @@ namespace LibraryAutomation.API.DTOs
         public async Task<IActionResult> GetAuthors()
         {
             var AuthorList = await _repo.GetAllAsync();
+            return Ok(AuthorList);
+        }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetAuthorsWithBook()
+        {
+            var AuthorList = await _repo.GetContext().Include(x=>x.Books).ToListAsync();
             return Ok(AuthorList);
         }
 

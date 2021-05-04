@@ -15,8 +15,8 @@ namespace LibraryAutomation.API.Context.ModelMaps
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseIdentityColumn();
 
-            builder.HasOne(x => x.User).WithMany(x => x.BorrowBooks).HasForeignKey(x => x.UserId);
-            builder.HasOne(x => x.Book).WithMany(x => x.BorrowBooks).HasForeignKey(x => x.BookId);
+            builder.HasOne(x => x.User).WithMany(x => x.BorrowBooks).HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(x => x.Book).WithMany(x => x.BorrowBooks).HasForeignKey(x => x.BookId).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

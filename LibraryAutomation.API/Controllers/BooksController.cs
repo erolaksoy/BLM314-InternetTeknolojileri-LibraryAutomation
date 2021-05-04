@@ -39,6 +39,14 @@ namespace LibraryAutomation.API.Controllers
             return Created("", addBook);
         }
 
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> GetBookById(int id)
+        {
+            var entity = await _bookRepo.GetByIdAsync(id);
+            if (entity == null) return NotFound();
+            return Ok(entity);
+        }
+
         [HttpPut]
         public async Task<IActionResult> UpdateBook(BookUpdateDto bookUpdateDto)
         {

@@ -7,6 +7,7 @@ namespace LibraryAutomation.API.DTOs
 {
     public class BorrowBookAddDto
     {
+        public int Id { get; set; }
         public DateTime ReceivedDate { get; set; }
         public DateTime DeliveryDate { get; set; }
         public int UserId { get; set; }
