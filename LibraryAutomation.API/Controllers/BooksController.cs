@@ -4,6 +4,7 @@ using LibraryAutomation.API.Interfaces;
 using LibraryAutomation.API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace LibraryAutomation.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetBooks()
         {
-            var bookList = await _bookRepo.GetAllAsync();
+            var bookList = await _bookRepo.GetContext().Include(x=>x.Author).ToListAsync();
             return Ok(bookList);
         }
 

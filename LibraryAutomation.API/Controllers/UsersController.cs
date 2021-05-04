@@ -29,7 +29,6 @@ namespace LibraryAutomation.API.Controllers
         public async Task<IActionResult> GetUsers()
         {
             var userList = await _userRepo.GetAllAsync();
-            
             return Ok(_userRepo.GetContext().Include(x=>x.BorrowBooks).ToList());
         }
 
